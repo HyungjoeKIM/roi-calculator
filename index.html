@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Real Estate ROI Calculator</title>
+<script>
+function calculateROI() {
+    var purchasePrice = parseFloat(document.getElementById('purchasePrice').value);
+    var monthlyRent = parseFloat(document.getElementById('monthlyRent').value);
+    var monthlyExpenses = parseFloat(document.getElementById('monthlyExpenses').value);
+    var annualAppreciation = parseFloat(document.getElementById('annualAppreciation').value);
+    
+    var annualRentalIncome = monthlyRent * 12;
+    var annualExpenses = monthlyExpenses * 12;
+    var annualCashFlow = annualRentalIncome - annualExpenses;
+    var totalInvestment = purchasePrice;
+    var cashOnCashReturn = (annualCashFlow / totalInvestment) * 100;
+    var totalReturn = ((annualCashFlow + (purchasePrice * (annualAppreciation / 100))) / totalInvestment) * 100;
+    
+    document.getElementById('result1').innerText = "Cash on Cash Return: " + cashOnCashReturn.toFixed(2) + "%";
+    document.getElementById('result2').innerText = "Total Return including Appreciation: " + totalReturn.toFixed(2) + "%";
+}
+</script>
+</head>
+<body>
+<h2>Real Estate ROI Calculator</h2>
+<div>
+    <label for="purchasePrice">Purchase Price ($): </label>
+    <input type="number" id="purchasePrice" required><br><br>
+    <label for="monthlyRent">Monthly Rent ($): </label>
+    <input type="number" id="monthlyRent" required><br><br>
+    <label for="monthlyExpenses">Monthly Expenses ($): </label>
+    <input type="number" id="monthlyExpenses" required><br><br>
+    <label for="annualAppreciation">Annual Appreciation (%): </label>
+    <input type="number" id="annualAppreciation" required><br><br>
+    <button onclick="calculateROI()">Calculate ROI</button>
+</div>
+<h3>Results:</h3>
+<p id="result1"></p>
+<p id="result2"></p>
+</body>
+</html>
